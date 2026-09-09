@@ -89,10 +89,3 @@ Worth saying out loud: because writes are queued, the concurrency test doesn't *
 ## What I'd do before this went near production
 
 Rate limiting. A real token check in `identify.js`. The nightly reconciliation job. Pagination on `GET /expenses` — it returns everything right now, which is fine for a demo and not fine for a real account. A settle-up endpoint, because without one balances only ever grow.
-
-## Questions I'd want to ask
-
-1. Should an expense be editable by anyone in it, or only whoever added it? I went with anyone, matching Splitwise, but I'm not sure that's right without an edit history.
-2. What should actually happen when someone with an outstanding balance wants to leave? Blocking is the safe answer and also the annoying one.
-3. Per-pair balances or per-group? Per-pair matches "balances with all different users" literally, but groups change what "settled" means.
-4. If multi-currency balances should net into one figure, when is the rate captured?
